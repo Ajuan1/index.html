@@ -373,47 +373,43 @@ showView("admin")
 
 function loadCSV(){
 
-let file=document.getElementById("csvFile").files[0]
+let file = document.getElementById("csvFile").files[0]
 
 if(!file){
 alert("Selecciona un archivo CSV")
 return
 }
 
-let reader=new FileReader()
+let reader = new FileReader()
 
-reader.onload=function(e){
+reader.onload = function(e){
 
-let text=e.target.result.trim()
+let text = e.target.result
 
-let rows=text.split("\n")
+let rows = text.split(/\r?\n/)
 
-questions=[]
+questions = []
 
-rows.slice(1).forEach(r=>{
+for(let i=1;i<rows.length;i++){
 
-let separator = r.includes(";") ? ";" : ","
+let row = rows[i].trim()
 
-let c=r.split(separator)
+if(row === "") continue
 
-if(c.length>=9){
+let cols = row.split(",")
+
+if(cols.length < 7) continue
 
 questions.push({
-
-carrera:c[0].trim().toUpperCase(),
-pregunta:c[4].trim(),
-respuesta:c[5].trim(),
-opciones:c[6].replace(/"/g,"").split(";"),
-feedback:c[7].trim(),
-bibliografia:c[8].trim()
-
+carrera: cols[0].trim().toUpperCase(),
+pregunta: cols[4].trim(),
+respuesta: cols[5].trim(),
+opciones: cols[6].split(";")
 })
 
 }
 
-})
-
-alert("Preguntas cargadas: "+questions.length)
+alert("Preguntas cargadas: " + questions.length)
 
 }
 
