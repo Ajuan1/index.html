@@ -236,7 +236,7 @@ showView("career")
 
 function startQuiz(c){
 
-quiz=questions.filter(q=>q.carrera==c)
+quiz=questions.filter(q=>q.carrera.trim().toUpperCase()===c)
 
 quiz=quiz.sort(()=>Math.random()-0.5)
 
