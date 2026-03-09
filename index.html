@@ -364,7 +364,7 @@ clearInterval(timer)
 
 showView("results")
 
-let percent=Math.round(score/quiz.length*100)
+let percent = quiz.length ? Math.round(score/quiz.length*100) : 0
 
 document.getElementById("score").innerText=percent+"%"
 
