@@ -26,7 +26,6 @@ body{font-family:'Inter',sans-serif}
 Simulador CACES
 </h1>
 
-<!-- BOTÓN ADMIN OCULTO -->
 <button onclick="adminLogin()" class="text-xs text-gray-400 hover:text-blue-600">
 Admin
 </button>
@@ -36,8 +35,6 @@ Admin
 
 
 <main class="max-w-2xl mx-auto p-6">
-
-<!-- LANDING -->
 
 <section id="landing">
 
@@ -59,8 +56,6 @@ Empezar Simulacro
 
 </section>
 
-
-<!-- FORMULARIO ESTUDIANTE -->
 
 <section id="student" class="hidden">
 
@@ -84,8 +79,6 @@ Continuar
 
 </section>
 
-
-<!-- CARRERA -->
 
 <section id="career" class="hidden">
 
@@ -111,8 +104,6 @@ Enfermería
 
 </section>
 
-
-<!-- QUIZ -->
 
 <section id="quiz" class="hidden">
 
@@ -147,8 +138,6 @@ Siguiente
 </section>
 
 
-<!-- RESULTADOS -->
-
 <section id="results" class="hidden text-center">
 
 <h2 class="text-2xl font-bold">
@@ -165,17 +154,11 @@ Resultados
 
 <a id="waBtn" target="_blank"
 class="block mt-6 bg-green-500 text-white py-4 rounded-xl font-bold">
-
 Escribir al WhatsApp
-
 </a>
-
-<div id="feedback" class="text-left mt-8"></div>
 
 </section>
 
-
-<!-- ADMIN -->
 
 <section id="admin" class="hidden">
 
@@ -236,7 +219,7 @@ showView("career")
 
 function startQuiz(c){
 
-quiz = questions.filter(q => q.carrera.toUpperCase().includes(c))
+quiz = questions.filter(q => q.carrera === c)
 
 console.log("Preguntas encontradas:", quiz.length)
 
@@ -258,6 +241,7 @@ startTimer()
 loadQuestion()
 
 }
+
 
 function startTimer(){
 
@@ -323,16 +307,6 @@ document.getElementById("progress").style.width=
 function select(o){
 
 let q=quiz[index]
-
-answers.push({
-
-pregunta:q.pregunta,
-user:o,
-correct:q.respuesta,
-feedback:q.feedback,
-biblio:q.bibliografia
-
-})
 
 if(o==q.respuesta)score++
 
@@ -418,7 +392,9 @@ questions=[]
 
 rows.slice(1).forEach(r=>{
 
-let c=r.split(",")
+let separator = r.includes(";") ? ";" : ","
+
+let c=r.split(separator)
 
 if(c.length>=9){
 
@@ -444,6 +420,7 @@ alert("Preguntas cargadas: "+questions.length)
 reader.readAsText(file)
 
 }
+
 </script>
 
 </body>
