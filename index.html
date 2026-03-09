@@ -236,13 +236,13 @@ showView("career")
 
 function startQuiz(c){
 
-quiz = questions.filter(q => q.carrera.trim().toUpperCase() === c.trim().toUpperCase())
+quiz = questions.filter(q => q.carrera.toUpperCase().includes(c))
 
 console.log("Preguntas encontradas:", quiz.length)
 
-quiz=quiz.sort(()=>Math.random()-0.5)
+quiz = quiz.sort(()=>Math.random()-0.5)
 
-quiz=quiz.slice(0,Math.min(10,quiz.length))
+quiz = quiz.slice(0,Math.min(10,quiz.length))
 
 index=0
 score=0
