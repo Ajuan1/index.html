@@ -238,6 +238,8 @@ function startQuiz(c){
 
 quiz = questions.filter(q => q.carrera.trim().toUpperCase() === c.trim().toUpperCase())
 
+console.log("Preguntas encontradas:", quiz.length)
+
 quiz=quiz.sort(()=>Math.random()-0.5)
 
 quiz=quiz.slice(0,Math.min(10,quiz.length))
@@ -256,7 +258,6 @@ startTimer()
 loadQuestion()
 
 }
-
 
 function startTimer(){
 
